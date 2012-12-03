@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import argparse
 
 # Get arguments
 argvs = sys.argv
@@ -11,16 +12,17 @@ choice = "d2b"
 inputStr = ""
 decNum = 0
 
-# Input "choice" value
-if (argc >= 2):
-    choice = argvs[1]
+# Init Argument Parser
+parser = argparse.ArgumentParser(description='convert base number.')
+parser.add_argument('-c', help='select conversion', nargs=1)
+parser.add_argument('number', type=str, nargs='?', default='', help='a converted number')
+args = parser.parse_args()
+#print(args) # debug print
 
-# Input changed number
-if (argc >= 3):
-    # argument
-    inputStr = argvs[2]
-else:
-    # console
+choice = args.c[0]
+inputStr = args.number;
+
+if inputStr == '':
     inputStr = raw_input("Please input number:")
 
 # 10->2
